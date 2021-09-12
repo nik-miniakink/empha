@@ -20,6 +20,6 @@ class WriteOnlyUserSerializer(serializers.ModelSerializer):
         fields = ['username', 'first_name', 'last_name', 'password', 'is_active', 'is_superuser', 'last_login']
 
     def validate_is_active(self, value):
-        if value is None:
+        if 'is_active' not in self.initial_data:
             raise serializers.ValidationError('This field is required.')
         return value
