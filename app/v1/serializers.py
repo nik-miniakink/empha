@@ -11,13 +11,16 @@ class ReadOnlyUserSerializer(serializers.ModelSerializer):
 
 
 class WriteOnlyUserSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для методов с записью. Дополнительная валидация поля is_active
+    """
     is_active = serializers.BooleanField(required=True)
     is_superuser = serializers.BooleanField(read_only=True)
     password = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'password', 'is_active', 'is_superuser', 'last_login']
+        fields = ['id', 'username', 'first_name', 'last_name', 'password', 'is_active', 'is_superuser', 'last_login']
 
     def validate_is_active(self, value):
         if 'is_active' not in self.initial_data:

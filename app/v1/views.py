@@ -1,13 +1,13 @@
 from rest_framework import generics
+from rest_framework.permissions import AllowAny
 
 from .models import User
 from .permissions import IsOwnerOrReadOnly
 from .serializers import ReadOnlyUserSerializer, WriteOnlyUserSerializer
 
 
-
 class UserListCreateAPIView(generics.ListCreateAPIView):
-    permission_classes = []
+    permission_classes = [AllowAny]
     queryset = User.objects.all()
 
     def get_serializer_class(self):
