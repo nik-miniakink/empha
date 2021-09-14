@@ -7,7 +7,8 @@ class ReadOnlyUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'is_active', 'last_login', 'is_superuser']
+        fields = ['id', 'username', 'first_name', 'last_name', 'is_active',
+                  'last_login', 'is_superuser']
 
 
 class WriteOnlyUserSerializer(serializers.ModelSerializer):
@@ -20,7 +21,8 @@ class WriteOnlyUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'password', 'is_active', 'is_superuser', 'last_login']
+        fields = ['id', 'username', 'first_name', 'last_name', 'password',
+                  'is_active', 'is_superuser', 'last_login']
 
     def validate_is_active(self, value):
         if 'is_active' not in self.initial_data:

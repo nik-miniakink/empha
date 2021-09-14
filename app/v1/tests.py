@@ -10,7 +10,8 @@ class TokenTests(APITestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        User.objects.create_user(username='name_1', password='pass_1', is_active=True)  # login User
+        User.objects.create_user(username='name_1', password='pass_1',
+                                 is_active=True)
 
     def test_get_token_not_auth(self):
         """
@@ -44,9 +45,10 @@ class AccountListCreateTests(APITestCase):
         response = client.post('/api/v1/users/', data=correct_data)
         self.assertEqual(User.objects.count(), 1)
         # Правильность формы ответа
-        serializer_read_data = ('id', 'username', 'first_name', 'last_name', 'is_active', 'last_login', 'is_superuser')
+        serializer_read_data = ('id', 'username', 'first_name', 'last_name',
+                                'is_active', 'last_login', 'is_superuser')
         for item in serializer_read_data:
-            self.assertTrue(item in response.json(), msg=f'{item} нет в ответе')
+            self.assertTrue(item in response.json(), msg=f'{item} нет')
             self.assertEqual(len(serializer_read_data), 7)
         # Обязатлеьность поля is_active
         incorrect_data = {
@@ -63,7 +65,8 @@ class AccountRetrieveUpdateDestroyTests(APITestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        User.objects.create(username='name_1', password='pass_1', is_active=True)
+        User.objects.create(username='name_1', password='pass_1',
+                            is_active=True)
 
     def test_to_destroy(self):
         client = APIClient()
@@ -84,7 +87,8 @@ class AccountRetrieveUpdateDestroyTests(APITestCase):
         self.assertFalse(user.is_active)
         self.assertEqual(User.objects.count(), 1)
 
-        superuser = User.objects.create(username='admin', password='admin', is_active=True, is_superuser=True)
+        superuser = User.objects.create(username='admin', password='admin',
+                                        is_active=True, is_superuser=True)
         client.force_authenticate(user=superuser)
 
         response = client.patch('/api/v1/users/1/', is_active=True)
