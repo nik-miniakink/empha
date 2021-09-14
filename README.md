@@ -37,3 +37,4 @@ docker run -it -p 8000:8000
 Непосредственно контейнер доступен по ссылке
 https://hub.docker.com/repository/docker/nikminiakink/empha
 
+стек; Django, DRF, simplejwt, flate8
