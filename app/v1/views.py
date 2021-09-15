@@ -16,6 +16,8 @@ class UserListCreateAPIView(generics.ListCreateAPIView):
         else:
             return ReadOnlyUserSerializer
 
+    def perform_create(self, serializer):
+        serializer.save()
 
 class UserRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrAdminOrReadOnly]
