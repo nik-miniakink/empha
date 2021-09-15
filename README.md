@@ -35,17 +35,30 @@ python manage.py test
 
 
 Для запуска приложения использовать команды последовательно:
-1. Сборка контейнера
+1. П0дготовить миграции
+
+python manage.py makemigrations
+
+2. Применить миграции
+
+python manage.py migrate
+
+3. При необходимости создать суперпользователя
+
+python manage.py createsuperuser
+
+4. Подняться на 1 каталог выше
+
+cd ..
+
+5. Сборка контейнера
 
 docker build -t empha . 
 ***
 2.Запуск контейнера
 
-docker run -it -p 8000:8000
+docker run -it -p 8000:8000 уьзрф
 ***
-
-
-
 
 URL:
 
