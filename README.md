@@ -19,7 +19,6 @@
 - Использован flake8
 - .env не убран специально
 
-Все команды ниже выполнять из директории содержащей файл manage.py
 ***
 Для запуска тестов использовать:
 
@@ -34,7 +33,5 @@ docker build -t empha .
 
 docker run -it -p 8000:8000
 ***
-Непосредственно контейнер доступен по ссылке
-https://hub.docker.com/repository/docker/nikminiakink/empha
 
 стек: Django, DRF, simplejwt, flate8
