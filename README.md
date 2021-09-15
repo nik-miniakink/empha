@@ -35,3 +35,11 @@ docker run -it -p 8000:8000
 ***
 
 стек: Django, DRF, simplejwt, flate8
+
+
+URL:
+
+1. 'api/token/' - получение токена
+2. 'api/token/refresh/' -  получение refresh токен
+3. 'api/v1/users/' - получение списка Users или создание нового
+4. 'api/v1/users/pk/' - получение информаци о пользователе, обновление или удаление акаунта 
