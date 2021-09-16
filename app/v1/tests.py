@@ -1,4 +1,4 @@
-from .models import User
+from app.v1.models import User
 
 from rest_framework.test import APIClient, APITestCase
 
