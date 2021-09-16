@@ -35,7 +35,7 @@ python manage.py test
 
 
 Для запуска приложения использовать команды последовательно:
-1. П0дготовить миграции
+1. Подготовить миграции
 
 python manage.py makemigrations
 
@@ -57,7 +57,7 @@ docker build -t empha .
 ***
 2.Запуск контейнера
 
-docker run -it -p 8000:8000 уьзрф
+docker run -it -p 8000:8000 empha
 ***
 
 URL:
