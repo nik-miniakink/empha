@@ -35,9 +35,9 @@ docker run -d -it -p 8000:8000 empha
 
 docker ps
 ***
-4. Создание суперпользователя
+4. Создание суперпользователя(подставить container ID)
 
- docker exec -it  <container ID>> /code/app/manage.py createsuperuser
+ docker exec -it  container ID /code/app/manage.py createsuperuser
 ***
 
 
