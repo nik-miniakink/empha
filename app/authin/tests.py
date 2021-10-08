@@ -1,4 +1,4 @@
-from app.v1.models import User
+from app.authin.models import User
 
 from rest_framework.test import APIClient, APITestCase
 
@@ -42,7 +42,7 @@ class AccountListCreateTests(APITestCase):
             'password': 'pass_1',
             'is_active': True,
         }
-        response = client.post('/api/v1/users/', data=correct_data)
+        response = client.post('/api/authin/users/', data=correct_data)
         self.assertEqual(User.objects.count(), 1)
         # Правильность формы ответа
         serializer_read_data = ('id', 'username', 'first_name', 'last_name',
@@ -56,7 +56,7 @@ class AccountListCreateTests(APITestCase):
             'password': 'pass_1',
         }
 
-        response_incorrect = client.post('/api/v1/users/', data=incorrect_data)
+        response_incorrect = client.post('/api/authin/users/', data=incorrect_data)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(response_incorrect.status_code, 400)
 
@@ -71,16 +71,16 @@ class AccountRetrieveUpdateDestroyTests(APITestCase):
     def test_to_destroy(self):
         client = APIClient()
         # Невозможность удалить несвою форму
-        response = client.delete('/api/v1/users/1/')
+        response = client.delete('/api/authin/users/1/')
         self.assertEqual(response.status_code, 401)
 
         client.force_authenticate(user=None)
-        response = client.delete('/api/v1/users/1/')
+        response = client.delete('/api/authin/users/1/')
         self.assertEqual(response.status_code, 401)
         # При удалении запись сновавится не активной, и не удаляется
         user = User.objects.get(id='1')
         client.force_authenticate(user=user)
-        response = client.delete('/api/v1/users/1/')
+        response = client.delete('/api/authin/users/1/')
         self.assertEqual(response.status_code, 204)
         #
         user = User.objects.get(id='1')
@@ -91,5 +91,5 @@ class AccountRetrieveUpdateDestroyTests(APITestCase):
                                         is_active=True, is_superuser=True)
         client.force_authenticate(user=superuser)
 
-        response = client.patch('/api/v1/users/1/', is_active=True)
+        response = client.patch('/api/authin/users/1/', is_active=True)
         self.assertEqual(response.status_code, 200)
